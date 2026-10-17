@@ -21,3 +21,10 @@ Réponse : Il contient les packages installés par Composer. Il est exclu car il
 ## 5. Git Credential Manager
 
 Réponse : C'est un outil qui mémorise vos identifiants GitHub pour vous éviter de réécrire votre mot de passe à chaque action.
+## 6. Historique depuis lab-01
+ 
+Nombre de commits depuis lab-01 : 2
+
+Fichiers modifiés depuis lab-01 : routes/web.php, resources/views/a-propos.blade.php, README.md, notes/s02-git.md, screenshots/
+
+Ce que git tag -n affiche pour lab-01 : lab-01
