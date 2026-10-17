@@ -11,6 +11,17 @@ Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication 
 - Routes en closures : `/`, `/bonjour`, `/bonjour-court`, `/bienvenue`, `/version`, `/heure` et `/a-propos`.
 - Vues Blade : `bienvenue`, `heure` et `a-propos`.
 - Base de données SQLite locale (`database/database.sqlite`, non versionnée).
+## ## Routes disponibles
+
+| Méthode | URI | Réponse |
+|---|---|---|
+| GET | `/` | Vue `welcome` d'accueil |
+| GET | `/bonjour` | Texte d'accueil Bonjour MDW32 |
+| GET | `/bonjour-court` | Texte d'accueil en fonction fléchée |
+| GET | `/bienvenue` | Vue `bienvenue` avec les variables étudiant et cours |
+| GET | `/version` | Affiche la configuration système |
+| GET | `/heure` | Affiche l'heure actuelle du serveur |
+| GET | `/a-propos` | Vue `a-propos` avec le nom de l'auteur et le groupe |
 
 ## Prérequis
 
