@@ -5,11 +5,13 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
-Route::get('/a-propos', [PageController::class, 'about'])->name('a-propos');
+Route::get('/a-propos', [PageController::class, 'about'])->name('about');
 Route::get('/heure', [PageController::class, 'time'])->name('time');
 
 Route::get('/posts/archive/{year}', [PostController::class, 'archive'])
     ->whereNumber('year')
     ->name('posts.archive');
+Route::get('/posts/categorie/{category:slug}', [PostController::class, 'byCategory'])->name('posts.category');
 
 Route::resource('posts', PostController::class);
+Route::patch('/posts/{post}/publication', [PostController::class, 'togglePublication'])->name('posts.publication');
