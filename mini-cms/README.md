@@ -6,14 +6,13 @@ Auteur : omri youssef, groupe 2 MDW33.
 
 Mini-CMS évoluera au fil du semestre vers une petite plateforme de publication : pages publiques, back-office authentifié, API JSON et tests Pest. Chaque session se termine par un tag Git (`lab-01`, `lab-01b`, puis un tag par session).
 
-## État actuel (tag lab-06)
+## État actuel (tag lab-06b)
 
-- Comptes écrits à la main : inscription (`/inscription`), connexion (`/connexion`) et déconnexion, avec `Hash::make`, `Auth::attempt` et la régénération de la session.
-- Colonne `role` (`author` par défaut, `admin`). Après `php artisan migrate:fresh --seed`, le compte de démonstration `test@example.com` (mot de passe `password`) est administrateur.
-- Écritures et back-office réservés aux utilisateurs connectés (middleware `auth`) ; chaque nouvel article est attaché à son auteur.
-- Gate `manage-categories` : seuls les administrateurs gèrent les catégories.
-- `PostPolicy` : un auteur modifie et supprime ses articles, un administrateur tous les articles.
-- Tests Pest : `PostPagesTest`, `PostWriteTest`, `PostRelationsTest`, `PostTaxonomyTest`, `PostFeedbackTest`, `CategoryAdminTest`, `ErrorPagesTest`, `AuthTest` et `AuthorizationTest`.
+- Middleware `admin` (`App\Http\Middleware\EnsureUserIsAdmin`) sur tout `/admin` : un auteur reçoit 403 « Réservé aux administrateurs. ».
+- Gate `manage-tags`, comme `manage-categories` : contrôleur, Form Requests et menu.
+- Brouillons protégés : `PostPolicy::view` et le scope `visibleTo` ; un brouillon n'est visible que par son auteur et les administrateurs.
+- Tests d'autorisation : `AdminAccessTest` (7 tests) et `PostVisibilityTest` (5 tests), en plus des fichiers de la session 11.
+- Comparaison écrite avec le starter kit Livewire (section ci-dessous).
 
 ## Routes disponibles
 
@@ -171,3 +170,8 @@ Back-office des catégories et des tags, messages de validation en français, pa
 | Tests | Écrits manuellement avec Pest | Déjà fournis pour toute la partie authentification |
 
 Ce que je garderais du kit dans un vrai projet : Dans un vrai projet, je garderais toute la base d'authentification déjà prête du starter kit (surtout la limitation des tentatives de connexion, la réinitialisation du mot de passe et la vérification d'e-mail) pour éviter de réécrire des fonctions critiques et sécurisées à la main. En revanche, j'ajouterais moi-même la gestion des rôles, des Gates et des Policies comme dans Mini-CMS, car le kit ne les fournit pas.
+### Session 12
+
+![Page 403 « Réservé aux administrateurs. » pour un compte auteur sur /admin/tags](screenshots/s12-admin-interdit.png)
+
+![Barre de navigation d'un compte auteur, sans les liens Catégories et Tags](screenshots/s12-menu-auteur.png)
