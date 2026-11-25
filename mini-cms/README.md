@@ -155,3 +155,19 @@ Back-office des catégories et des tags, messages de validation en français, pa
 ![Barre de navigation d'un utilisateur connecté, avec le message « Vous êtes connecté. »](screenshots/s11-connexion.png)
 
 ![Page 403 quand un auteur ouvre la modification de l'article d'un autre auteur](screenshots/s11-interdit.png)
+## Comparaison avec le starter kit Livewire
+
+| Critère | Mini-CMS (authentification manuelle) | Starter kit Livewire |
+|---|---|---|
+| Routes d'authentification | Écrites manuellement dans `routes/web.php` | Déjà prêtes et configurées par Fortify / Livewire |
+| Inscription | Contrôleur et formulaire Blade créés à la main | Déjà incluse avec composants Livewire |
+| Connexion | Gérée manuellement avec `Auth::attempt()` et `regenerate()` | Déjà incluse et prête à l'emploi |
+| Déconnexion | Route POST écrite à la main (`logout()`, `invalidate()`, `regenerateToken()`) | Déjà incluse dans le kit |
+| Limitation des tentatives | Absente (aucune protection contre le brute-force) | Intégrée nativement par défaut |
+| Mot de passe oublié | Non implémenté | Déjà inclus (réinitialisation par e-mail) |
+| Vérification de l'e-mail | Non implémentée | Déjà incluse et configurable |
+| Double authentification | Non implémentée | Déjà incluse (2FA avec code et récupération) |
+| Rôles et autorisations | Écrits manuellement (colonne `role`, middleware, Gates et Policies) | Non inclus par défaut (à coder soi-même) |
+| Tests | Écrits manuellement avec Pest | Déjà fournis pour toute la partie authentification |
+
+Ce que je garderais du kit dans un vrai projet : Dans un vrai projet, je garderais toute la base d'authentification déjà prête du starter kit (surtout la limitation des tentatives de connexion, la réinitialisation du mot de passe et la vérification d'e-mail) pour éviter de réécrire des fonctions critiques et sécurisées à la main. En revanche, j'ajouterais moi-même la gestion des rôles, des Gates et des Policies comme dans Mini-CMS, car le kit ne les fournit pas.
